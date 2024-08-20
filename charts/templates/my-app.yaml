@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "nginx-env-test.fullname" . }}-my-app
+  labels:
+  {{- include "nginx-env-test.labels" . | nindent 4 }}
+spec:
+  containers:
+  - env:
+    - name: DEMO_GREETING
+      value: Hello from the environment
+    - name: DEMO_FAREWELL
+      value: Such a sweet sorrow
+    image: nginx:latest
+    name: nginx-container-1
+  - env:
+    - name: DEMO_GREETING
+      value: Hello again from the environment
+    - name: DEMO_FAREWELL
+      value: Such another sweet sorrow
+    image: nginx:latest
+    name: nginx-container-2
